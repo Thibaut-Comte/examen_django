@@ -1,4 +1,4 @@
-#Musique
+#Projet de Musique
 - Installer le paquet crispy si problème d'affichage des formulaires:
 
 pip install django-crispy-forms
