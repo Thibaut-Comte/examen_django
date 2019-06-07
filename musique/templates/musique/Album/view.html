@@ -8,7 +8,8 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title text-center">{{ album.name }}</h1>
+                    <h1 class="card-title text-center">{{ album.name }}
+                    <img src="{{ album.pochette.url }}" alt="pochette" width="75px" height="75px"></h1>
                     <p class="card-text">Informations : <br> {{ album.infos }}</p>
                     <p class="card-text">Titres : <br>{{ album.musiques }}</p>
                     <p class="card-text">
@@ -26,7 +27,8 @@
                         {% endfor %}
                     </p>
                     <a class="btn btn-success" href="{% url 'update-album' album.id %}">Modifier</a>
-                    <a class="btn btn-danger" href="{% url 'delete-album' album.id %}">Supprimer</a>
+                    <a href="{% url 'delete-album' album.id %}" class="btn btn-danger"
+                       onclick="return confirm('Etes-vous sûr de vouloir supprimer cet album ?');">Supprimer</a>
                 </div>
             </div>
         </div>

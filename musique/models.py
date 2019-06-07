@@ -6,6 +6,7 @@ class Album(models.Model):
     infos = models.TextField(null=True)
     musiques = models.TextField(null=True)
     artistes = models.ManyToManyField('Artiste', related_name='artistes')
+    pochette = models.ImageField()
 
     class Meta:
         verbose_name = 'Album'
@@ -20,6 +21,7 @@ class Artiste(models.Model):
     name = models.CharField(max_length=255)
     bio = models.TextField()
     albums = models.ManyToManyField('Album', related_name='albums', blank=True)
+    image = models.ImageField()
 
     class Meta:
         verbose_name = 'Artiste'

@@ -12,7 +12,7 @@ def home(request):
 
 def newArtiste(request):
 
-    form = ArtisteForm(request.POST or None)
+    form = ArtisteForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         name = form.cleaned_data['name']
@@ -30,7 +30,7 @@ def newArtiste(request):
 
 def newAlbum(request):
 
-    form = AlbumForm(request.POST or None)
+    form = AlbumForm(request.POST or None, request.FILES or None)
 
     if form.is_valid():
         name = form.cleaned_data['name']
@@ -58,13 +58,14 @@ def updateArtiste(request, id):
 
     artiste = get_object_or_404(Artiste, id=id)
 
-    form = ArtisteForm(request.POST or None, instance=artiste)
+    form = ArtisteForm(request.POST or None, request.FILES or None, instance=artiste)
 
     update = True
 
     if form.is_valid():
         name = form.cleaned_data['name']
         bio = form.cleaned_data['bio']
+
         form.save()
 
         update = True
@@ -75,7 +76,7 @@ def updateAlbum(request, id):
 
     album = get_object_or_404(Album, id=id)
 
-    form = AlbumForm(request.POST or None, instance=album)
+    form = AlbumForm(request.POST or None, request.FILES or None, instance=album)
 
     update = True
 

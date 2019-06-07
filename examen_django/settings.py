@@ -119,6 +119,9 @@ STATIC_URL = '/static/'
 INTERNAL_IPS = '127.0.0.1'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
