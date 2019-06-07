@@ -2,12 +2,26 @@
 {% load crispy_forms_tags %}
 {% block title %}
 
-Ajouter un artiste
+    {% if update %}
+        Modifier un artiste
+
+    {% else %}
+        Ajouter un artiste
+
+    {% endif %}
 
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Ajouter un Artiste</h1>
+    <h1 class="text-center">
+        {% if update %}
+            Modifier un Artiste
+
+        {% else %}
+            Ajouter un Artiste
+
+        {% endif %}
+    </h1>
     {% if update %}
         <div class="alert alert-success" role="alert">
             Mise à jour effectuée
