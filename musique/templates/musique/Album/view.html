@@ -6,19 +6,29 @@
 {% block body %}
     <div class="row">
         <div class="col">
-            <h1>{{ album.name }}</h1>
-            {#            <p class="infos">{{ article.auteur }}, le {{ article.date|date:"DATE_FORMAT" }}</p>#}
-            <p><a href="{% url 'update-album' album.id %}">Modifier</a></p>
-            <p>{{ album.infos }}</p>
-            <p>{{ album.musiques }}</p>
-            Artiste{{ album.artistes.all|pluralize }}
-            {% for artiste in album.artistes.all %}
-                <div class="contenu">
-                    {{ artiste.name }}
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">{{ album.name }}</h1>
+                    <p class="card-text">Informations : <br> {{ album.infos }}</p>
+                    <p class="card-text">Titres : <br>{{ album.musiques }}</p>
+                    <p class="card-text">
+                        Artiste{{ album.artistes.all|pluralize }}
+                        {% for artiste in album.artistes.all %}
+                            <ul>
+                                <div class="contenu">
+                                    <li>
+                                        <a href="{% url 'view-artiste' artiste.id %}">{{ artiste.name }}</a>
+                                    </li>
+                                </div>
+                            </ul>
+                        {% empty %}
+                            N'a pas encore fait d'album.
+                        {% endfor %}
+                    </p>
+                    <a class="btn btn-success" href="{% url 'update-album' album.id %}">Modifier</a>
+                    <a class="btn btn-danger" href="{% url 'delete-album' album.id %}">Supprimer</a>
                 </div>
-            {% empty %}
-                N'a pas encore fait d'album.
-            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

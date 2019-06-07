@@ -4,16 +4,29 @@
 {% block body %}
     <div class="row">
         <div class="col">
-            <h1>{{ artiste.name }}</h1>
-            <p class="infos"><a href="{% url 'update-artiste' artiste.id %}">Modifier</a></p>
-            <div class="contenu">{{ artiste.bio }}</div>
-            {% for album in artiste.albums.all %}
-                <div class="contenu">
-                    {{ album.name }}
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">{{ artiste.name }}</h1>
+                    <p class="card-text">Biographie: <br>
+                        {{ artiste.bio }}</p>
+                    <p class="card-text">Album{{ artiste.albums.all|pluralize }}<br>
+                    <ul>
+                        {% for album in artiste.albums.all %}
+                            <div class="contenu">
+                                <li>
+                                    <a href="{% url 'view-album' album.id %}">{{ album.name }}</a>
+                                </li>
+                            </div>
+                        {% empty %}
+                            N'a pas encore fait d'album.
+                        {% endfor %}
+                    </ul>
+                    </p>
+                    <a class="btn btn-success" href="{% url 'update-artiste' artiste.id %}">Modifier</a>
+                    <a class="btn btn-danger" href="{% url 'delete-artiste' artiste.id %}">Supprimer</a>
                 </div>
-            {% empty %}
-                N'a pas encore fait d'album.
-            {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
+

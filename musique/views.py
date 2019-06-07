@@ -23,7 +23,6 @@ def newArtiste(request):
 
         # Nous pourrions ici envoyer l'e-mail grâce aux données
         # que nous venons de récupérer
-        envoi = "Artiste ajouté"
 
         return redirect('home')
 
@@ -39,11 +38,6 @@ def newAlbum(request):
         musiques = form.cleaned_data['musiques']
 
         form.save()
-
-        # Nous pourrions ici envoyer l'e-mail grâce aux données
-        # que nous venons de récupérer
-        envoi = "Album ajouté"
-
         return redirect('home')
 
     return render(request, 'musique/Album/form.html', locals())
@@ -64,14 +58,16 @@ def updateArtiste(request, id):
 
     artiste = get_object_or_404(Artiste, id=id)
 
-    form = ArtisteForm(instance=artiste)
+    form = ArtisteForm(request.POST or None, instance=artiste)
+
+    update = True
 
     if form.is_valid():
         name = form.cleaned_data['name']
         bio = form.cleaned_data['bio']
         form.save()
-        envoi = "Modification effectuée"
-        return redirect('home')
+
+        update = True
 
     return render(request, 'musique/Artiste/form.html', locals())
 
@@ -79,16 +75,32 @@ def updateAlbum(request, id):
 
     album = get_object_or_404(Album, id=id)
 
-    form = AlbumForm(instance=album)
+    form = AlbumForm(request.POST or None, instance=album)
 
     update = True
 
     if form.is_valid():
         form.save()
-        envoi = "Modification effectuée"
-        return redirect('home')
+
+        update = True
 
     return render(request, 'musique/Album/form.html', locals())
+
+def deleteArtiste(request, id):
+
+    artiste = get_object_or_404(Artiste, id=id)
+
+    artiste.delete()
+
+    return redirect('home')
+
+def deleteAlbum(request, id):
+
+    album = get_object_or_404(Album, id=id)
+
+    album.delete()
+
+    return redirect('home')
 
 def contact(request):
     form = ContactForm(request.POST or None)
