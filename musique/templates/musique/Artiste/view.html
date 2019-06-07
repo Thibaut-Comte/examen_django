@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Fiche de {{ artiste.name }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>{{ artiste.name }}</h1>
+            <p class="infos"><a href="{% url 'update-artiste' artiste.id %}">Modifier</a></p>
+            <div class="contenu">{{ artiste.bio }}</div>
+            {% for album in artiste.albums.all %}
+                <div class="contenu">
+                    {{ album.name }}
+                </div>
+            {% empty %}
+                N'a pas encore fait d'album.
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

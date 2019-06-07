@@ -1,1 +1,4 @@
-"# examen_django" 
+#Musique
+- Insataller le paquet crispy:
+
+pip install django-crispy-forms

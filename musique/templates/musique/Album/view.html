@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ album.name }}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>{{ album.name }}</h1>
+            {#            <p class="infos">{{ article.auteur }}, le {{ article.date|date:"DATE_FORMAT" }}</p>#}
+            <p><a href="{% url 'update-album' album.id %}">Modifier</a></p>
+            <p>{{ album.infos }}</p>
+            <p>{{ album.musiques }}</p>
+            Artiste{{ album.artistes.all|pluralize }}
+            {% for artiste in album.artistes.all %}
+                <div class="contenu">
+                    {{ artiste.name }}
+                </div>
+            {% empty %}
+                N'a pas encore fait d'album.
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

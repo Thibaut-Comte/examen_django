@@ -2,19 +2,36 @@
 {% block title %}Accueil{% endblock %}
 {% block body %}
     <h1 class="text-center">Accueil</h1>
+    {% if envoi %}
+        <div class="alert alert-success" role="alert">
+            {{ envoi }}
+        </div>
+    {% endif %}
     <div class="row">
         <div class="col text-center">
             <h2>Artistes</h2>
-            <a class="btn btn-info" href="">Ajouter un artiste</a>
+            <a class="btn btn-info" href="{% url "new-artiste" %}">Ajouter un artiste</a>
             <ul>
-
+                {% for artiste in artistes %}
+                    <li class="mt-2">
+                        <a href="{% url 'view-artiste' artiste.id %}">{{ artiste.name }}</a>
+                    </li>
+                {% empty %}
+                    Il n'y a pas encore d'artistes pour le moment.
+                {% endfor %}
             </ul>
         </div>
         <div class="col text-center mt-2">
             <h2>Albums</h2>
-            <a class="btn btn-info" href="">Ajouter un album</a>
+            <a class="btn btn-info" href="{% url 'new-album' %}">Ajouter un album</a>
             <ul>
-
+                {% for album in albums %}
+                    <li class="mt-2">
+                        <a href="{% url 'view-album' album.id %}">{{ album.name }}</a>
+                    </li>
+                {% empty %}
+                    Il n'y a pas encore d'artistes pour le moment.
+                {% endfor %}
             </ul>
         </div>
     </div>
