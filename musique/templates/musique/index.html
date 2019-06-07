@@ -11,9 +11,9 @@
         <div class="col text-center">
             <h2>Artistes</h2>
             <a class="btn btn-info" href="{% url "new-artiste" %}">Ajouter un artiste</a>
-            <ul>
+            <ul class="list-group">
                 {% for artiste in artistes %}
-                    <li class="mt-2">
+                    <li class="mt-2 list-group-item">
                         <a href="{% url 'view-artiste' artiste.id %}">{{ artiste.name }}</a>
                     </li>
                 {% empty %}
@@ -24,9 +24,9 @@
         <div class="col text-center mt-2 border-left">
             <h2>Albums</h2>
             <a class="btn btn-info" href="{% url 'new-album' %}">Ajouter un album</a>
-            <ul>
+            <ul class="list-group">
                 {% for album in albums %}
-                    <li class="mt-2">
+                    <li class="mt-2 list-group-item">
                         <a href="{% url 'view-album' album.id %}">{{ album.name }}</a>
                     </li>
                 {% empty %}

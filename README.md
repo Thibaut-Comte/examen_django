@@ -8,4 +8,8 @@ pip install django-crispy-forms
 pip install pillow
 
 Ce projet consiste à lister des artistes et des albums de musiques.
-Les deux models sont reliés entre eux.
+
+Il est possible de voir les artistes associés aux albums et vice-versa.
+Nous pouvons lire, ajouter, modifier ou encore supprimer les différents éléments.
+Un formulaire de contact est mis en place de manière statique.
+La navigation peut se faire via la nav bar.
